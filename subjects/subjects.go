@@ -46,6 +46,7 @@ func getSubject(c *gin.Context) {
 }
 
 func getSubjectsNats(msg *nats.Msg) {
+	fmt.Printf("Serve nats msg: %v\n", msg.Subject)
 	var subjectIds []string
 	var subjects []Subject
 
