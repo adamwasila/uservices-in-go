@@ -74,7 +74,7 @@ func initRest(router *gin.Engine)  {
 }
 
 func initNats(con *nats.Conn) {
-	var _, err = con.Subscribe("subjects", getSubjectsNats)
+	var _, err = con.QueueSubscribe("subjects", "subjectsQueue", getSubjectsNats)
 	if err != nil {
 		fmt.Println("Error while subscribing to...")
 		panic(err)
