@@ -1,5 +1,14 @@
 version: '2.1'
 services:
+  traefik:
+    build:
+      context: ./traefik
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    ports:
+      - "8080:8080"
+      - "80:80"
+
   mongo:
     image: mongo
 
@@ -21,6 +30,10 @@ services:
     depends_on:
       - nats
       - mongo
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=students"
+      - "traefik.frontend.rule=PathPrefix:/student"
 
   subjects:
     build: 
@@ -30,3 +43,7 @@ services:
     depends_on:
       - nats
       - mongo
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=subjects"
+      - "traefik.frontend.rule=PathPrefix:/subject"
