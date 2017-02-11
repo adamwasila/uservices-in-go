@@ -1,0 +1,32 @@
+version: '2.1'
+services:
+  mongo:
+    image: mongo
+
+  mongo-seed:
+    build: 
+      context: ./dbfixtures
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mongo
+
+  nats:
+    image: nats
+
+  students:
+    build: 
+      context: .
+      dockerfile: students-docker/Dockerfile
+    command: ["-mongo", "mongo", "-nats", "nats://nats:4222"]
+    depends_on:
+      - nats
+      - mongo
+
+  subjects:
+    build: 
+      context: .
+      dockerfile: subjects-docker/Dockerfile
+    command: ["-mongo", "mongo", "-nats", "nats://nats:4222"]
+    depends_on:
+      - nats
+      - mongo
