@@ -17,7 +17,6 @@ docker-compose up -d
 go install github.com/adamwasila/uservices-in-go/students
 go install github.com/adamwasila/uservices-in-go/subjects
 ```
-```
 
 Libraries used:
 
