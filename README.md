@@ -4,6 +4,21 @@ Simple, fun-type, project started to experiment with (and learn) golang and to t
 
 No practical use. No ambitions to be beautiful code example either. 
 
+Quick start:
+
+* install go, glide, docker, docker-compose; only first one is obligatory
+* run glide install to install all dependencies to vendor directory
+* (A) for in-container build, run:
+```
+docker-compose up -d
+```
+* (B) for regular build, run:
+```
+go install github.com/adamwasila/uservices-in-go/students
+go install github.com/adamwasila/uservices-in-go/subjects
+```
+```
+
 Libraries used:
 
 * gin - http framework/router to provide REST API
